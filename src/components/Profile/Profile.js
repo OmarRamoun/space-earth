@@ -17,6 +17,7 @@ const RocketsSection = styled.div`
 const MissionsSection = styled.div`
   margin: 1rem 0;
   flex-basis: 49%;
+  flex-basis: 50%;
 `;
 
 const ProfileTitle = styled.div`
@@ -57,6 +58,9 @@ const Profile = () => {
   const missions = useSelector((state) => state.missionsReducer);
   const reservedRockets = rockets.filter((rocket) => rocket.reserved === true);
   const joinedMissions = missions.filter((mission) => mission.reserved === true);
+const Profile = () => {
+  const rockets = useSelector((state) => state.rocketsReducer);
+  const reservedRockets = rockets.filter((rocket) => rocket.reserved === true);
 
   return (
     <Container>
@@ -76,6 +80,13 @@ const Profile = () => {
           }
         </JoinedMissions>
       </MissionsSection>
+        <ProfileTitle>My Rockets</ProfileTitle>
+        <ReservedRockets>
+          {
+            reservedRockets.map((rRock) => <RocketName key={rRock.id}>{rRock.name}</RocketName>)
+          }
+        </ReservedRockets>
+      </RocketsSection>
     </Container>
   );
 };
